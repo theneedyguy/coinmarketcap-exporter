@@ -1,4 +1,6 @@
-# coinmarketcap-exporter
+# coinmarketcap-exporter (Fork optimized for OpenShift)
+
+This is a fork of the original project made by [bonovoxly](https://github.com/bonovoxly). It just changes the running user to nobdoy in the Dockerfile.
 
 A prometheus exporter for <https://coinmarketcap.com/>. Provides Prometheus metrics from the API endpoint of Coinmarketcap, such as US price, Bitcoin price, trading volume, etc. [Blog post found here](http://blog.billyc.io/2017/12/02/a-prometheus-exporter-for-cryptocurrency-values-using-the-coinmarketcap-api/).
 
@@ -14,7 +16,7 @@ When running this exporter with both Prometheus and Grafana, [you can create das
 docker build -t coinmarketcap-exporter:latest .
 ```
 
-- Run it while listening on localhost:9100:
+- Run it while listening on localhost:9101:
 
 ```
 docker run --rm -p 127.0.0.1:9101:9101 coinmarketcap-exporter:latest
@@ -31,22 +33,6 @@ docker run --rm -it --entrypoint=/bin/bash -p 127.0.0.1:9101:9101 -v ${PWD}:/opt
 ```
 python coinmarketcap.py
 ```
-
-# Testing the Prometheus Grafana Stack
-
-- In the `prometheus-compose` directory, run:
-
-```
-docker-compose up
-```
-
-- Go to <http://localhost:3000>.  Log in as `admin/admin`. 
-- To import the dashboard, click the "Home" button at the top, then on the right, click "Import Dashboard".
-- Enter `3890` in the "Grafana.com Dashboard" field.
-- Select the "prometheus" data source.
-- Modify the other settings as preferred. Click "Import".
-- The new dashboard should be selectable and found at <http://localhost:3000/dashboard/db/coinmarketcap-single>.
-- The Prometheus interface can be accessed at <http://localhost:9090>
 
 # Thanks and Links
 
